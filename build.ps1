@@ -215,7 +215,10 @@ function Build-Installer {
         $setupExe = Join-Path $root "dist\installer\enlaceadorSetup.exe"
         if (Test-Path $setupExe) {
             $setupSize = [math]::Round((Get-Item $setupExe).Length / 1MB, 2)
+            $md5 = (Get-FileHash -Algorithm MD5 $setupExe).Hash.ToLower()
+            "$md5  enlaceadorSetup.exe" | Set-Content -NoNewline "$setupExe.md5"
             Write-Host "  OK: enlaceadorSetup.exe ($setupSize MB)" -ForegroundColor Green
+            Write-Host "  MD5: $md5" -ForegroundColor Gray
             $script:results += [PSCustomObject]@{ Version = "Installer"; Status = "OK"; Details = "$setupSize MB" }
         } else {
             Write-Host "  OK: ISCC completed (output not found at expected path)" -ForegroundColor Yellow
