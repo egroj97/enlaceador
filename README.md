@@ -40,22 +40,3 @@ Output in `build/main/Release/` and `build/register/Release/`:
 # Point Inno Setup to qt\enlaceador-Qt.iss
 # Ensure windeployqt has been run first
 ```
-
-## Performance
-
-| Metric | Value |
-|--------|-------|
-| Startup | ~100-150ms |
-| Binary size | ~30-40MB (with Qt DLLs) |
-| GUI | Qt Widgets |
-| Runtime dep | Qt6Core.dll, Qt6Gui.dll, Qt6Widgets.dll, qwindows.dll |
-
-## Files
-
-| File | Purpose |
-|------|---------|
-| `main/main.cpp` | Entry point, URL parsing |
-| `main/BrowserChooser.*` | Custom frameless widget |
-| `main/BrowserDetector.*` | Browser detection |
-| `register/main.cpp` | HTTP/HTTPS protocol registration |
-| `enlaceador-Qt.iss` | Inno Setup installer script |
