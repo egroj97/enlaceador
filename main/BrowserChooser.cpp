@@ -48,8 +48,9 @@ BrowserChooser::~BrowserChooser() {
 }
 
 void BrowserChooser::handleChosenButton() {
-  if (auto *btn = static_cast<BrowserButton *>(sender())) {
+  if (auto *btn = static_cast<BrowserButton *>(this->sender())) {
     QProcess::startDetached(btn->getPath(), {m_url});
-    close();
+    this->close();
+    QCoreApplication::quit();
   }
 }
