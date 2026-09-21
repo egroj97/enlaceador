@@ -2,14 +2,12 @@
 #define BROWSERBUTTON_H
 
 #include <QEnterEvent>
-#include <QEvent>
 #include <QPushButton>
 
 class BrowserButton : public QPushButton {
 public:
-  BrowserButton(const QString &name, const QString &path,
-                QWidget *parent = nullptr)
-      : QPushButton(name, parent), m_path(path) {
+  BrowserButton(QString name, QString path, QWidget *parent = nullptr)
+      : QPushButton(name, parent), m_path(std::move(path)) {
     setMinimumHeight(36);
     setCursor(Qt::PointingHandCursor);
   }

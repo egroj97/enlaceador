@@ -1,6 +1,8 @@
 #ifndef BROWSERCHOOSER_H
 #define BROWSERCHOOSER_H
 
+#include <QString>
+#include <QVector>
 #include <QWidget>
 
 class BrowserButton;
@@ -9,9 +11,9 @@ class BrowserChooser : public QWidget {
   Q_OBJECT
 
 public:
-  explicit BrowserChooser(const QVector<BrowserButton *> &browsers,
-                          const QString &url, QWidget *parent = nullptr);
-  ~BrowserChooser();
+  explicit BrowserChooser(QVector<BrowserButton *> browsers, QString url,
+                          QWidget *parent = nullptr);
+  ~BrowserChooser() override;
 
 private slots:
   void handleChosenButton();
