@@ -4,7 +4,7 @@ AppVersion=1.0
 DefaultDirName={autopf}\enlaceador
 DefaultGroupName=enlaceador
 OutputDir=dist\installer
-OutputBaseFilename=EnlaceadorSetup-Qt
+OutputBaseFilename=enlaceadorSetup-Qt
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=lowest
@@ -13,7 +13,7 @@ InfoAfterText=This installer was created using Inno Setup (https://jrsoftware.or
 
 [Files]
 Source: "build\main\enlaceador.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "build\register\EnlaceadorRegister.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "build\register\enlaceadorRegister.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "build\main\Qt6Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "build\main\Qt6Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "build\main\Qt6Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -28,10 +28,10 @@ Name: "{group}\enlaceador"; Filename: "{app}\enlaceador.exe"
 Name: "{autodesktop}\enlaceador"; Filename: "{app}\enlaceador.exe"
 
 [Run]
-Filename: "{app}\EnlaceadorRegister.exe"; Description: "Register as default HTTP/HTTPS handler"; Flags: postinstall nowait skipifsilent runascurrentuser
+Filename: "{app}\enlaceadorRegister.exe"; Description: "Register as default HTTP/HTTPS handler"; Flags: postinstall nowait skipifsilent runascurrentuser
 
 [UninstallRun]
-Filename: "{app}\EnlaceadorRegister.exe"; Parameters: "--uninstall"; Flags: runascurrentuser
+Filename: "{app}\enlaceadorRegister.exe"; Parameters: "--uninstall"; Flags: runascurrentuser
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}"

@@ -1,4 +1,4 @@
-# Enlaceador Build Script
+# enlaceador Build Script
 # Build all versions of the browser chooser app
 # Usage: .\build-all.ps1 [qt]
 
@@ -8,7 +8,7 @@ $results = @()
 
 function Show-Header {
     Write-Host ""
-    Write-Host "  Enlaceador Build Script" -ForegroundColor Cyan
+    Write-Host "  enlaceador Build Script" -ForegroundColor Cyan
     Write-Host "  =======================" -ForegroundColor Cyan
     Write-Host ""
 }
@@ -102,7 +102,7 @@ function Build-Qt {
         if (!(Test-Path $winDeployQt)) {
             $winDeployQt = Join-Path $qtBinDir "windeployqt.exe"
         }
-        $mainExePath = Join-Path (Get-Location) "main\Enlaceador.exe"
+        $mainExePath = Join-Path (Get-Location) "main\enlaceador.exe"
         if ((Test-Path $winDeployQt) -and (Test-Path $mainExePath)) {
             $deployOut = & $winDeployQt --release $mainExePath 2>&1
             $deployOk = $LASTEXITCODE -eq 0
@@ -113,8 +113,8 @@ function Build-Qt {
     Pop-Location
 
     if ($configOk -and $buildOk) {
-        $mainExe = Join-Path "$root\build\main" "Enlaceador.exe"
-        $regExe  = Join-Path "$root\build\register" "EnlaceadorRegister.exe"
+        $mainExe = Join-Path "$root\build\main" "enlaceador.exe"
+        $regExe  = Join-Path "$root\build\register" "enlaceadorRegister.exe"
 
         if (Test-Path $mainExe) {
             $mainSize = [math]::Round((Get-Item $mainExe).Length / 1KB, 1)
@@ -128,8 +128,8 @@ function Build-Qt {
             $regSize = 0
         }
 
-        Write-Host "  OK: Enlaceador.exe ($mainSize KB)" -ForegroundColor Green
-        Write-Host "  OK: EnlaceadorRegister.exe ($regSize KB)" -ForegroundColor Green
+        Write-Host "  OK: enlaceador.exe ($mainSize KB)" -ForegroundColor Green
+        Write-Host "  OK: enlaceadorRegister.exe ($regSize KB)" -ForegroundColor Green
         if ($deployOk) {
             Write-Host "  OK: windeployqt completed" -ForegroundColor Green
         } else {

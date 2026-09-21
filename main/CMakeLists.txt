@@ -1,9 +1,10 @@
-add_executable(Enlaceador WIN32
+add_executable(enlaceador WIN32
     main.cpp
-    BrowserChooser.h
+    BrowserChooser.hpp
     BrowserChooser.cpp
-    BrowserDetector.h
+    BrowserDetector.hpp
     BrowserDetector.cpp
+    BrowserButton.hpp
 )
 
-target_link_libraries(Enlaceador PRIVATE Qt6::Widgets advapi32)
+target_link_libraries(enlaceador PRIVATE Qt6::Widgets advapi32)

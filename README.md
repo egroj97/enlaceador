@@ -1,4 +1,4 @@
-# Enlaceador - Qt Version
+# enlaceador - Qt Version
 
 Cross-platform Qt implementation of enlaceador.
 
@@ -19,22 +19,25 @@ Using script (recommended):
 Manual:
 
 ```bash
-cd qt
 mkdir build && cd build
-cmake .. -DCMAKE_PREFIX_PATH="C:/Qt/6.x.x/msvc2022_64" -DCMAKE_BUILD_TYPE=Release
+cmake .. -G Ninja -DCMAKE_PREFIX_PATH=<PATH_TO_QT_INSTALL> -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=<PATH_TO_CPP_COMPILTER>
 cmake --build . --config Release
-windeployqt --release main/Release/Enlaceador.exe
+```
+
+```powershell
+# windows only
+windeployqt --release main/Release/enlaceador.exe
 ```
 
 Output in `build/main/Release/` and `build/register/Release/`:
-- `Enlaceador.exe` - Main GUI app
-- `EnlaceadorRegister.exe` - Registry handler
+- `enlaceador.exe` - Main GUI app
+- `enlaceadorRegister.exe` - Registry handler
 - Qt DLLs (deployed by windeployqt)
 
 ## Installer
 
 ```bash
-# Point Inno Setup to qt\Enlaceador-Qt.iss
+# Point Inno Setup to qt\enlaceador-Qt.iss
 # Ensure windeployqt has been run first
 ```
 
@@ -55,4 +58,4 @@ Output in `build/main/Release/` and `build/register/Release/`:
 | `main/BrowserChooser.*` | Custom frameless widget |
 | `main/BrowserDetector.*` | Browser detection |
 | `register/main.cpp` | HTTP/HTTPS protocol registration |
-| `Enlaceador-Qt.iss` | Inno Setup installer script |
+| `enlaceador-Qt.iss` | Inno Setup installer script |

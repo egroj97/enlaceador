@@ -4,12 +4,12 @@
 #include <windows.h>
 #include <iostream>
 
-const wchar_t* APP_NAME = L"Enlaceador";
+const wchar_t* APP_NAME = L"enlaceador";
 
 static QString getExePath() {
     QString currentPath = QCoreApplication::applicationFilePath();
     QDir dir = QFileInfo(currentPath).absoluteDir();
-    return QDir::toNativeSeparators(dir.filePath(QString::fromWCharArray(L"Enlaceador.exe")));
+    return QDir::toNativeSeparators(dir.filePath(QString::fromWCharArray(L"enlaceador.exe")));
 }
 
 static void setRegValue(HKEY hive, const wchar_t* subKey, const wchar_t* valueName, const wchar_t* value) {
@@ -35,28 +35,28 @@ static void registerHandler() {
     std::wstring wExePath = exePath.toStdWString();
     std::wstring command = L"\"" + wExePath + L"\" \"%1\"";
 
-    setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\Enlaceador", nullptr, L"URL:Enlaceador");
-    setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\Enlaceador", L"URL Protocol", L"");
-    setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\Enlaceador\\shell\\open\\command", nullptr, command.c_str());
+    setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\enlaceador", nullptr, L"URL:enlaceador");
+    setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\enlaceador", L"URL Protocol", L"");
+    setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\enlaceador\\shell\\open\\command", nullptr, command.c_str());
     setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\http\\shell\\open\\command", nullptr, command.c_str());
     setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\https\\shell\\open\\command", nullptr, command.c_str());
 
-    setRegValue(HKEY_CURRENT_USER, L"Software\\Enlaceador\\Capabilities", L"ApplicationName", APP_NAME);
-    setRegValue(HKEY_CURRENT_USER, L"Software\\Enlaceador\\Capabilities", L"ApplicationDescription",
+    setRegValue(HKEY_CURRENT_USER, L"Software\\enlaceador\\Capabilities", L"ApplicationName", APP_NAME);
+    setRegValue(HKEY_CURRENT_USER, L"Software\\enlaceador\\Capabilities", L"ApplicationDescription",
         L"Choose which browser to open links with");
-    setRegValue(HKEY_CURRENT_USER, L"Software\\Enlaceador\\Capabilities\\URLAssociations", L"http", APP_NAME);
-    setRegValue(HKEY_CURRENT_USER, L"Software\\Enlaceador\\Capabilities\\URLAssociations", L"https", APP_NAME);
-    setRegValue(HKEY_CURRENT_USER, L"Software\\RegisteredApplications", APP_NAME, L"Software\\Enlaceador\\Capabilities");
+    setRegValue(HKEY_CURRENT_USER, L"Software\\enlaceador\\Capabilities\\URLAssociations", L"http", APP_NAME);
+    setRegValue(HKEY_CURRENT_USER, L"Software\\enlaceador\\Capabilities\\URLAssociations", L"https", APP_NAME);
+    setRegValue(HKEY_CURRENT_USER, L"Software\\RegisteredApplications", APP_NAME, L"Software\\enlaceador\\Capabilities");
 
     std::wcout << L"Successfully registered " << APP_NAME << L" as default HTTP/HTTPS handler." << std::endl;
     std::wcout << L"Executable: " << wExePath << std::endl;
 }
 
 static void unregisterHandler() {
-    deleteKey(HKEY_CURRENT_USER, L"Software\\Classes\\Enlaceador");
+    deleteKey(HKEY_CURRENT_USER, L"Software\\Classes\\enlaceador");
     deleteKey(HKEY_CURRENT_USER, L"Software\\Classes\\http\\shell\\open\\command");
     deleteKey(HKEY_CURRENT_USER, L"Software\\Classes\\https\\shell\\open\\command");
-    deleteKey(HKEY_CURRENT_USER, L"Software\\Enlaceador");
+    deleteKey(HKEY_CURRENT_USER, L"Software\\enlaceador");
 
     HKEY key = nullptr;
     if (RegOpenKeyExW(HKEY_CURRENT_USER, L"Software\\RegisteredApplications", 0, KEY_SET_VALUE, &key) == ERROR_SUCCESS) {

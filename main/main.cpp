@@ -1,14 +1,13 @@
 #include <QApplication>
-#include "BrowserChooser.h"
-#include "BrowserDetector.h"
+#include "BrowserChooser.hpp"
+#include "BrowserDetector.hpp"
+#include "BrowserButton.hpp"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
 
     QStringList args = QCoreApplication::arguments();
-    if (args.size() < 2) return 0;
-
-    QString url = args[1];
+    QString url = args.size() < 2 ? "www.example.com" : args[1];
 
     if (url.startsWith('"') && url.endsWith('"')) {
         url = url.mid(1, url.length() - 2);
@@ -18,7 +17,7 @@ int main(int argc, char* argv[]) {
         url = "https://" + url;
     }
 
-    QVector<Browser> browsers = BrowserDetector::getInstalledBrowsers();
+    QVector<BrowserButton*> browsers = BrowserDetector::getInstalledBrowsers();
 
     BrowserChooser chooser(browsers, url);
     chooser.show();
