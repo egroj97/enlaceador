@@ -1,20 +1,25 @@
-# enlaceador - Qt Version
+# enlaceador
 
-Cross-platform Qt implementation of enlaceador.
+> **Disclaimer:** This program's development was AI-assisted (OpenCode Go, Qwen 2.5/3.7 Max).
 
-## Requirements
+A locally installed browser muxer for those who use different browsers for different facets of their lives.
 
-- Qt 6 (Widgets module)
-- CMake 3.16+
-- C++17 compiler (tested with GCC)
+## Download
+
+You can find the installer alongside the MD5 checksum on the [GitHub Releases page](https://github.com/egroj97/enlaceador/releases).
 
 ## Build
 
-Using script (recommended):
+### Requirements
+
+- **Qt 6** (Widgets module)
+- **CMake** 3.16+
+- **C++17 compiler** (tested with GCC)
+
+#### Using Script (Recommended)
 
 ```powershell
 .\build.ps1
-```
 
 Manual:
 
