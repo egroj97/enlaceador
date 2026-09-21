@@ -20,6 +20,7 @@ You can find the installer alongside the MD5 checksum on the [GitHub Releases pa
 
 ```powershell
 .\build.ps1
+```
 
 Manual:
 
