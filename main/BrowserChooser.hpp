@@ -15,6 +15,8 @@ public:
                           QWidget *parent = nullptr);
   ~BrowserChooser() override;
 
+  void showAndActivate();
+
 private slots:
   void handleChosenButton();
 

@@ -19,6 +19,7 @@ if(NOT CMAKE_PREFIX_PATH)
 endif()
 
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 COMPONENTS LinguistTools)
 
 find_program(WINDEPLOYQT_EXECUTABLE
     NAMES windeployqt6 windeployqt
@@ -39,15 +40,23 @@ if(MINGW)
         __USE_MINGW_ANSI_STDIO=1
         _POSIX_C_SOURCE=200809L
         __STDC_FORMAT_MACROS
+        QT_NO_SESSIONMANAGER
+        QT_NO_PRINTER
+        QT_NO_CLIPBOARD
+        QT_NO_DRAGANDDROP
+        QT_NO_STYLE_ANDROID
+        QT_NO_STYLE_FUSION
+        QT_NO_STYLE_MAC
     )
     
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -finput-charset=UTF-8 -fexec-charset=UTF-8")
-    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -march=x86-64")
+    set(CMAKE_CXX_FLAGS_RELEASE "-Os -DNDEBUG -march=x86-64 -ffunction-sections -fdata-sections -flto")
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g -DNDEBUG -march=x86-64")
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
     
     add_link_options(
         -lpthread
+        -Wl,--gc-sections
     )
 endif()
 
