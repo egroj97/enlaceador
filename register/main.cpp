@@ -38,18 +38,15 @@ static void registerHandler() {
     setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\enlaceador", nullptr, L"URL:enlaceador");
     setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\enlaceador", L"URL Protocol", L"");
     setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\enlaceador\\shell\\open\\command", nullptr, command.c_str());
-    setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\http\\shell\\open\\command", nullptr, command.c_str());
-    setRegValue(HKEY_CURRENT_USER, L"Software\\Classes\\https\\shell\\open\\command", nullptr, command.c_str());
 
     setRegValue(HKEY_CURRENT_USER, L"Software\\enlaceador\\Capabilities", L"ApplicationName", APP_NAME);
     setRegValue(HKEY_CURRENT_USER, L"Software\\enlaceador\\Capabilities", L"ApplicationDescription",
         L"Choose which browser to open links with");
-    setRegValue(HKEY_CURRENT_USER, L"Software\\enlaceador\\Capabilities\\URLAssociations", L"http", APP_NAME);
-    setRegValue(HKEY_CURRENT_USER, L"Software\\enlaceador\\Capabilities\\URLAssociations", L"https", APP_NAME);
+    setRegValue(HKEY_CURRENT_USER, L"Software\\enlaceador\\Capabilities\\URLAssociations", L"http", L"enlaceador");
+    setRegValue(HKEY_CURRENT_USER, L"Software\\enlaceador\\Capabilities\\URLAssociations", L"https", L"enlaceador"); 
     setRegValue(HKEY_CURRENT_USER, L"Software\\RegisteredApplications", APP_NAME, L"Software\\enlaceador\\Capabilities");
 
-    std::wcout << L"Successfully registered " << APP_NAME << L" as default HTTP/HTTPS handler." << std::endl;
-    std::wcout << L"Executable: " << wExePath << std::endl;
+    std::wcout << L"Successfully registered " << APP_NAME << L" as a browser capability." << std::endl;
 }
 
 static void unregisterHandler() {
